@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
 
 const FavoriteProduct = () => {
+  const [isLiked, setIsLiked] = useState(false)
   const [favorites, setFavorites] = useState([
     {
       name: 'Long Sleeve Shirts',
@@ -55,6 +57,7 @@ const FavoriteProduct = () => {
   return (
     <View style={{ flex: 1, marginTop: 39.47, }}>
       <View style={{ width: 375, marginLeft: 21, justifyContent: 'center', alignItems: 'center' }}>
+
         <FlatList
           numColumns={2}
           data={favorites}
@@ -72,7 +75,18 @@ const FavoriteProduct = () => {
               margin: 12
             }}>
               <View style={{ alignItems: 'center' }}>
-                <View style={{ alignItems: 'center',justifyContent:'center', width: 142, height: 133, backgroundColor: ' rgba(135, 199, 185, 0.1)', borderRadius: 15 }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', width: 142, height: 133, backgroundColor: ' rgba(135, 199, 185, 0.1)', borderRadius: 15 }}>
+                  <View>
+                    <Pressable style={{ padding: 10 }} onPress={() => setIsLiked(!isLiked)}>
+                      {
+                        isLiked ?
+                          <AntDesign name="heart" size={10} color="#FF3535" />
+                          :
+                          <AntDesign name="hearto" size={10} color="#FF3535" />
+
+                      }
+                    </Pressable>
+                  </View>
                   <Image
                     style={{
                       width: 96,
@@ -90,7 +104,7 @@ const FavoriteProduct = () => {
                   fontSize: 14,
                   color: '#000000',
                   fontWeight: 400,
-                  marginTop:7,
+                  marginTop: 7,
                 }}>{item.name}</Text>
                 <Text style={{
                   fontFamily: 'Gorditas',
