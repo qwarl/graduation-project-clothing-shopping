@@ -1,12 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import axiosInstance from "../../../utils/axios";
 
-export default function ProductService() {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  );
+
+
+export const getProduct = async () => {
+    
+    const response = await axiosInstance.post('/api-product', data);
+    return response;
 }
-
-const styles = StyleSheet.create({});

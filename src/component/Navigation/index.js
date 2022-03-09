@@ -6,13 +6,14 @@ import UserNavigation from '../user/UserNavigation';
 import ProductNavigation from '../product/ProductNavigation';
 import { UserContext } from '../user/UserContext';
 
-const index = () => {
+const index = (props) => {
     const { isLoggedIn } = useContext(UserContext);
-    console.log(isLoggedIn);
-    return (
+    return (    
         <NavigationContainer>
-            {/* {isLoggedIn ? <ProductNavigation /> : <UserNavigation />} */}
-            <ProductNavigation/>
+            {
+                !isLoggedIn ? <ProductNavigation /> : <UserNavigation />
+            }
+            {/* <ProductNavigation/> */}
         </NavigationContainer>
     );
 };

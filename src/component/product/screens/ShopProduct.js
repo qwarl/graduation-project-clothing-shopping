@@ -141,8 +141,8 @@ const ShopProduct = () => {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'First' },
-    { key: 'second', title: 'Second' },
+    { key: 'first', title: 'Completed' },
+    { key: 'second', title: 'Cancelled' },
   ]);
 
   return (

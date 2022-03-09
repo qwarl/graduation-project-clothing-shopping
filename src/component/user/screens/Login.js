@@ -7,11 +7,19 @@ import { useNavigation } from "@react-navigation/native";
 
 
 const Login = (props) => {
-    const navigation = useNavigation();
-    const { onLogin } = useContext(UserContext);
+    const { navigation } = props;
+    const [username, setUsername] = useState('abc');
+    const [password, setPassword] = useState('123');
 
 
+    const { onLogin,isLoggedIn } = useContext(UserContext);
+    const _onLogin = () => {
+        onLogin(username, password);
+    }
 
+    const _onRegister = () => {
+        navigation.navigate('SignUp')
+    }
     return (
         <View style={styles.container}>
             <Image source={Logo}
@@ -24,6 +32,8 @@ const Login = (props) => {
                     }} />
                 <TextInput
                     style={{ flex: 1 }}
+                    value={username}
+                    onChangeText={setUsername}
                     placeholder={'Email'}
                     style={styles.username}
                     underlineColorAndroid="transparent" />
@@ -35,6 +45,8 @@ const Login = (props) => {
                         width: 48,
                     }} />
                 <TextInput
+                    value={password}
+                    onChangeText={setPassword}
                     placeholder={'Password'}
                     secureTextEntry
                     style={styles.username} />
@@ -43,7 +55,7 @@ const Login = (props) => {
                 <Text style={styles.btnForgot}>Forgot password?</Text>
             </View>
             <View style={styles.btnLogin}>
-                <Text onPress={onLogin} style={styles.txtLogin}>Log in</Text>
+                <Text onPress={_onLogin} style={styles.txtLogin}>Log in</Text>
             </View>
             <View style={styles.txtOrContainer}>
                 <Image source={Line} style={styles.lineLeft} />
@@ -56,7 +68,7 @@ const Login = (props) => {
             </View>
             <View style={styles.btnSignUpContainer}>
                 <Text style={styles.txtSignUp}>Don’t have an account?</Text>
-                <Text onPress={() => navigation.navigate('SignUp')} style={styles.btnSignUp}>Sign Up</Text>
+                <Text onPress={_onRegister} style={styles.btnSignUp}>Sign Up</Text>
             </View>
         </View>
     )
